@@ -1,0 +1,21 @@
+<form class = "log-in-form" method = "POST" action = "/index/registration">
+ 
+ <label>Email
+    <input type = "email" id = "email" name = "email" 
+    value = "<?php echo isset($_POST['email']) ? $_POST['email'] : '' ?>">
+  </label>
+
+  <label>Username
+    <input type = "text" id = "username" name = "username" 
+    value = "<?php echo isset($_POST['username']) ? $_POST['username'] : '' ?>">
+  </label>
+
+  <label>Password<input type = "password" id = "password" name = "password">
+  </label>
+
+  <label>Repeat password<input type = "password" id = "PwRepeat" 
+  name = "PwRepeat"></label>
+
+  <input type = "submit" class = "button expanded" value = "Register"></input>
+  
+</form>

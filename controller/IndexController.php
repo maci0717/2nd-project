@@ -8,7 +8,17 @@ class IndexController extends Controller
             'list'=>[],
             ]
         );
+    }
+    
+    public function registrationPage()
+    {
+        $this->view->render('registration');
+    }
 
+    public function registration()
+    {
+        Users::newRegistration();
+        $this->view->render('home');
     }
   
 }
