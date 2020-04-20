@@ -28,6 +28,13 @@ class IndexController extends Controller
         ]);
     }
 
+    public function logout()
+    {
+        unset($_SESSION['user']);
+        session_destroy();
+        $this->index();
+    }
+
     public function autorization()
     {
         if(!isset($_POST['email']) || !isset($_POST['password']))

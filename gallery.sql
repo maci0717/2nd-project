@@ -4,7 +4,7 @@ use gallery;
 
 CREATE TABLE users (
 id			int not null primary key auto_increment,
-username   		varchar(255) not null,
+username   	varchar(255) not null,
 email		varchar(50) not null,
 password    char(60) not null,
 adress		varchar(100),
@@ -19,4 +19,6 @@ photo	varchar(255)
 
 alter table photos add foreign key (user) references users(id);
 
-#dodan username u users, radim na registraciji korisnika
+select * from users;
+
+#napravljen login, uređene sitnice
