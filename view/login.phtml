@@ -1,0 +1,14 @@
+<form class="log-in-form" method="POST" action="/index/autorization">
+  
+    <label > Email
+    <input type = "email" id = "email" name = "email" value = "<?php echo $email ?>">
+    </label>
+
+    <label > Password
+    <input type = "password" id = "password" name = "password">
+    </label>
+
+    <?php echo $message; ?>
+    <input type = "submit" class = "button expanded"  value = "Log In" ></input>
+  
+</form>
