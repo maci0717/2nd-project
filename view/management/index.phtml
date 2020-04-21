@@ -1,0 +1,18 @@
+<form class = "log-in-form" method = "POST" action = "/management/post" enctype = "multipart/form-data">
+ 
+ <label> Status <input type = "text" id="status" name="status"></label>
+
+  <label for = "image"> Slika </label>
+  <input type = "file" name = "image" id = "image"  accept=".jpg,.png" > <!--Isprobati multiple-->
+
+
+  <input type="hidden" name="user" 
+  value="<?php echo $_SESSION['user']->id ?>"> 
+
+  <input type="submit" class="button expanded" value="Post"></input>
+
+<?php 
+	foreach($data as $row){
+		include 'smislitiime.phtml';
+	}
+ ?>

@@ -11,14 +11,17 @@ adress		varchar(100),
 sessionId   varchar(50)
 );
 
-create table photos(
+create table images(
 id		int not null primary key auto_increment,
 user	int not null,
-photo	varchar(255)
+status	varchar(255)
 );
 
-alter table photos add foreign key (user) references users(id);
+alter table images add foreign key (user) references users(id);
 
-select * from users;
 
-#napravljen login, uređene sitnice
+
+#napravljen log out, radim na autorizaciji
+#prebaciti autorizaciju u njen kontroler
+#maknuti registraciju iz izbornika
+# <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">

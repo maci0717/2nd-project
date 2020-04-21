@@ -1,0 +1,14 @@
+<?php if(isset($row)):
+    echo $row->username . '<br>';
+    echo $row->email . '<br>';
+    echo $row->adress . '<br>';
+    echo $row->status . '<br>';   
+?>
+
+<img src="<?php echo APP::config('url'); ?>public/images/<?php echo $row->id; ?>.jpg" 
+     alt="<?php echo $row->username ?>"/>
+    <?php if($row->username == $_SESSION['user']->username): ?>
+        Remove 
+
+    <?php endif; ?> <hr>
+<?php endif; ?>

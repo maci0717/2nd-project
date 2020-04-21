@@ -12,7 +12,8 @@ class AutorizationController extends Controller
                 'message'=>'You need to be loged in!',
                 'email'=>''
             ]);
-            exit;      
+            exit;
+        }      
     }
  
 }
