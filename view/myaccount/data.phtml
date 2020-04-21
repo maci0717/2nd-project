@@ -1,0 +1,33 @@
+<form class="log-in-form" method="POST" action="/myaccount/changeData">
+ 
+    <label>Username
+    <input type="text" id="username" name="username" value="<?php 
+    echo $row->username;?>">
+    </label>
+
+    <label>Email
+    <input type="email" id="email" name="email" value="<?php 
+    echo $row->email;?>">
+    </label>
+
+    <label>Adress
+    <input type="text" id="adress" name="adress" value="<?php 
+    echo $row->adress;
+    ?>">
+    </label>
+    
+    <input type="submit" class="button expanded" value="Change data"></input>
+  
+    <input type="hidden" name="id" value="<?php echo $row->id ?>">
+
+</form>
+<?php //echo $poruka; ?>
+
+
+
+
+
+
+
+    
+  
