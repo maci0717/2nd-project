@@ -7,10 +7,10 @@ class Myaccount
         $con = DB::getInstance();
         $exp = $con->prepare('
         select id, username, email, password, adress 
-        from users where sessionId=:sessionId       
+        from users where id=:id       
         ');
         $exp->execute([
-            'sessionId' => $_SESSION['user']->sessionId
+            'id' => $_SESSION['user']->id
         ]);
         return $exp->fetchAll();       
     }
@@ -19,9 +19,24 @@ class Myaccount
     {
         $con = DB::getInstance();
         $exp = $con->prepare('
+        update users set username=:username, email=:email, password=:password, adress=:adress where id=:id
+        ');
+        $_POST['password'] = password_hash($_POST['password'],PASSWORD_BCRYPT);
+        $exp->execute($_POST);      
+    }
+
+    public static function basicChange()
+    {
+        $con = DB::getInstance();
+        $exp = $con->prepare('
         update users set username=:username, email=:email, adress=:adress where id=:id
         ');
-        $exp->execute($_POST);      
+        $exp->execute([
+            'id' => $_POST['id'],
+            'username' => $_POST['username'],
+            'email' => $_POST['email'],
+            'adress' => $_POST['adress']
+        ]);      
     }
 
 }
