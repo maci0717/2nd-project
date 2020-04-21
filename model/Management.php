@@ -18,19 +18,25 @@ class Management
     {
         $con = DB::getInstance();
         $exp = $con->prepare('
-        insert into images 
-        (user,status) values 
-        (:user,:status)    
+        insert into images (user,status) values (:user,:status)    
         ');
         $exp->execute($_POST);
         $imageID = $con->lastInsertId();
 
         if(isset($_FILES['image'])){
-            $route = BP . 'public' . DIRECTORY_SEPARATOR
-            . 'images' . DIRECTORY_SEPARATOR 
-            . $imageID . '.jpg';
+            $route = BP . 'public' . DIRECTORY_SEPARATOR . 'images' .
+            DIRECTORY_SEPARATOR . $imageID . '.jpg';
             move_uploaded_file($_FILES['image']['tmp_name'], $route);
         }
+    }
+
+    public static function deletePost()
+    {
+        $con = DB::getInstance();
+        $exp = $con->prepare('
+        delete from images where id=:imageID   
+        ');
+        $exp->execute($_GET);
     }
 
 }

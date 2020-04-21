@@ -1,3 +1,4 @@
+<hr>
 <?php if(isset($row)):
     echo $row->username . '<br>';
     echo $row->email . '<br>';
@@ -7,8 +8,10 @@
 
 <img src="<?php echo APP::config('url'); ?>public/images/<?php echo $row->id; ?>.jpg" 
      alt="<?php echo $row->username ?>"/>
-    <?php if($row->username == $_SESSION['user']->username): ?>
-        Remove 
+    <?php if($row->username == $_SESSION['user']->username): ?><br><br>
+        
+        <a onclick="return confirm('<?php echo $row->username ?>, are you sure you want to remove this post?');" 
+        class="button" href="/management/removePost?imageID=<?php echo $row->id; ?>"> Remove </a> 
 
-    <?php endif; ?> <hr>
+    <?php endif; ?> 
 <?php endif; ?>
