@@ -1,40 +1,42 @@
 <form class="log-in-form" method="POST" action="/myaccount/changeData">
  
     <label>Username
-    <input type="text" id="username" name="username" value="<?php 
-    echo $row->username;?>">
+    <input type="text" id="username" name="username" style ="width: 400px;" 
+    value="<?php echo $row->username;?>">
     </label>
 
     <label>Email
-    <input type="email" id="email" name="email" value="<?php 
-    echo $row->email;?>">
+    <input type="email" id="email" name="email" style ="width: 400px;" 
+    value="<?php echo $row->email;?>">
     </label>
 
     <label>Adress
-    <input type="text" id="adress" name="adress" value="<?php 
-    echo $row->adress;
-    ?>">
+    <input type="text" id="adress" name="adress" style ="width: 400px;" 
+    value="<?php echo $row->adress;?>">
     </label>
 
     <label>New Pasword
-    <input type="password" id="password" name="password">
+    <input type="password" id="password" name="password" style ="width: 400px;">
     </label>
 
     <label>Repeat password
-    <input type="password" id="repeat" name="repeat">
+    <input type="password" id="repeat" name="repeat" style ="width: 400px;">
     </label>
 
     <?php if(isset($message)) echo $message; ?><br>
 
-    <input type="submit" class="button" value="Change Data"></input>
-   <a href="#" class="button">Remove Account</a>
+    <input type="submit" class="button" style ="width: 200px;" value="Change Data">
+    </input>
+
+    <a href="/myaccount/removeAccount" class="button" 
+    style ="width: 200px; background-color: red;">Remove Account</a>
   
     <input type="hidden" name="id" value="<?php echo $row->id ?>">
 
 </form>
-
-
-
+<?php /* Provjera duljine linije zbog PSRa
+echo strlen('<input type="password" id="password" name="password" style ="width: 400px;">'); */
+?>
 
 
 

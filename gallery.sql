@@ -19,9 +19,10 @@ status	varchar(255)
 
 alter table images add foreign key (user) references users(id);
 
+select * from users;
+select * from images;
 
 
-#napravljen log out, radim na autorizaciji
+#popraviti render nakon brisanja acc
 #prebaciti autorizaciju u njen kontroler
-#maknuti registraciju iz izbornika
-# <input type="file" id="inputImage" name="file" accept=".jpg,.jpeg,.png,.gif,.bmp,.tiff">
+

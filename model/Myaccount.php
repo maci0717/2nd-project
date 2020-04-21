@@ -19,24 +19,45 @@ class Myaccount
     {
         $con = DB::getInstance();
         $exp = $con->prepare('
-        update users set username=:username, email=:email, password=:password, adress=:adress where id=:id
+        update users set password=:password where id=:id
         ');
         $_POST['password'] = password_hash($_POST['password'],PASSWORD_BCRYPT);
-        $exp->execute($_POST);      
+        $exp->execute([
+            'id' => $_POST['id'],
+            'password' => $_POST['password']
+        ]);      
     }
 
     public static function basicChange()
     {
         $con = DB::getInstance();
         $exp = $con->prepare('
-        update users set username=:username, email=:email, adress=:adress where id=:id
+        update users set username=:username, 
+        email=:email, adress=:adress where id=:id
         ');
         $exp->execute([
             'id' => $_POST['id'],
             'username' => $_POST['username'],
             'email' => $_POST['email'],
             'adress' => $_POST['adress']
-        ]);      
+        ]);
+        $_SESSION['user']->username = $_POST['username'];
+        $_SESSION['user']->email = $_POST['email'];
+        $_SESSION['user']->adress = $_POST['adress'];
+    }
+
+    public static function deleteAccount()
+    {
+        $con = DB::getInstance();
+        $con->beginTransaction();
+        
+        $exp = $con->prepare('delete from images where user=:id');   
+        $exp->execute([ 'id' => $_SESSION['user']->id ]); 
+
+        $exp = $con->prepare('delete from users where id=:id');   
+        $exp->execute([ 'id' => $_SESSION['user']->id ]); 
+        
+        $con->commit();
     }
 
 }
