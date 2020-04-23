@@ -36,7 +36,7 @@ class IndexController extends Controller
     }
 
     public function autorization()
-    {
+    {  
         if(!isset($_POST['email']) || !isset($_POST['password']))
         {
             $this->view->render('login', [
@@ -57,8 +57,6 @@ class IndexController extends Controller
  
         $result = Users::checkExistence();
 
-       
-
         if($result==null)
         {
             $this->view->render('login', [
@@ -76,6 +74,16 @@ class IndexController extends Controller
             ]);
             return;
         }
+
+        if(isset($_POST['remember'])) 
+        {
+            setcookie ('email', $_POST['email'], time()+ (30 * 24 * 60 * 60), '/');
+            setcookie ('password', $_POST['password'], time()+ (30 * 24 * 60 * 60), '/');
+        } else {
+            setcookie ('email',$_POST['email'],time() - 3600, '/');
+            setcookie ('password',$_POST['password'],time() - 3600, '/');
+        }
+
 
         unset($result->password);
         $_SESSION['user']=$result;
