@@ -52,7 +52,9 @@
         public function removeAccount()
         {
             Myaccount::deleteAccount();
-            $this->view->render($this->viewDir . 'home');
+            unset($_SESSION['user']);
+            session_destroy();
+            $this->view->render('home');
         }
 
     }
