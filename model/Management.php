@@ -39,4 +39,14 @@ class Management
         $exp->execute($_GET);
     }
 
+    public static function count()
+    {
+        $con = DB::getInstance();
+        $exp = $con->prepare('
+        select count(*) as number from images  
+        ');
+        $exp->execute();
+        return $exp->fetch()->number;
+    }
+
 }
