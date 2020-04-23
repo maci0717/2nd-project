@@ -22,12 +22,13 @@ alter table images add foreign key (user) references users(id);
 select * from users;
 select * from images;
  
-
-#popraviti render nakon brisanja acc + automatski log out
-#prebaciti autorizaciju u njen kontroler
-#skužiti kako nakon brisanja acc-a ukloniti slike iz direktorija, mozda unlink..
-#login sa username ili email
+insert into images (user) values (1);
 
 #Zadatak
-#Ajax na pocetnoj
-#brisanje slika iz filea
+#brisanje slika iz filea (mora biti bolji nacin)
+#trebam popraviti AJAX da mogu i nelogirani korisnici vidjeti (autorizacija zeza)
+
+#login sa username ili email
+#pri loginu il necemu se pojavi prazan post
+
+

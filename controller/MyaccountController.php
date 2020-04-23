@@ -57,9 +57,11 @@
             $this->view->render('home');
         }
 
-    }
+        public function deleteFiles()
+        {
+            Myaccount::deleteFiles();
+            $this->view->render('home');
+        }
 
-    // Uvjeti:
-    // 1. password i repeat se moraju poklapati
-    // 2. ako ih ne unese moram unset
-    // 3. 
+
+    }

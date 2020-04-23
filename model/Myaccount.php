@@ -51,6 +51,10 @@ class Myaccount
         $con = DB::getInstance();
         $con->beginTransaction();
         
+        $exp = $con->prepare('select id from images where user=:id');   
+        $exp->execute([ 'id' => $_SESSION['user']->id ]); 
+        $result = $exp->fetchAll();
+
         $exp = $con->prepare('delete from images where user=:id');   
         $exp->execute([ 'id' => $_SESSION['user']->id ]); 
 
@@ -58,6 +62,39 @@ class Myaccount
         $exp->execute([ 'id' => $_SESSION['user']->id ]); 
         
         $con->commit();
+        
+        error_reporting(E_ERROR | E_WARNING | E_PARSE);
+        $i=0;
+        while($result[$i]){
+            $path= BP . 'public' . DIRECTORY_SEPARATOR . 'images'. 
+            DIRECTORY_SEPARATOR . $result[$i]->id .'.jpg'; 
+            if(!file_exists($path)){
+            $path= BP . 'public' . DIRECTORY_SEPARATOR . 'images'. 
+            DIRECTORY_SEPARATOR . $result[$i]->id .'.png';
+            }
+            unlink($path);
+            $i++;
+        }
+    }
+
+    public static function deleteFiles()
+    {
+        $con = DB::getInstance();
+        $exp = $con->prepare('select id from images where user=:id');   
+        $exp->execute([ 'id' => $_SESSION['user']->id ]); 
+        $result = $exp->fetchAll();
+        $i=0;
+        while($result[$i]){
+            $path= BP . 'public' . DIRECTORY_SEPARATOR . 'images'. 
+            DIRECTORY_SEPARATOR . $result[$i]->id .'.jpg'; 
+            if(!file_exists($path)){
+            $path= BP . 'public' . DIRECTORY_SEPARATOR . 'images'. 
+            DIRECTORY_SEPARATOR . $result[$i]->id .'.png';
+            }
+            unlink($path);
+            $i++;
+        }
+     
     }
 
 }
