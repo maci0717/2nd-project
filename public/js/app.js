@@ -3,7 +3,7 @@ $(document).foundation();
 
 $("a.button").click(function(){
     $.ajax({
-        url: '/management/countImages', 
+        url: '/index/countImages', 
         success: function(result){
       $("#countNumber").html(result);
     }});

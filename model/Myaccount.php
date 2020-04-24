@@ -63,6 +63,9 @@ class Myaccount
         
         $con->commit();
         
+        unset($_SESSION['user']);
+        session_destroy();
+        
         error_reporting(E_ERROR | E_WARNING | E_PARSE);
         $i=0;
         while($result[$i]){
@@ -76,25 +79,4 @@ class Myaccount
             $i++;
         }
     }
-
-    public static function deleteFiles()
-    {
-        $con = DB::getInstance();
-        $exp = $con->prepare('select id from images where user=:id');   
-        $exp->execute([ 'id' => $_SESSION['user']->id ]); 
-        $result = $exp->fetchAll();
-        $i=0;
-        while($result[$i]){
-            $path= BP . 'public' . DIRECTORY_SEPARATOR . 'images'. 
-            DIRECTORY_SEPARATOR . $result[$i]->id .'.jpg'; 
-            if(!file_exists($path)){
-            $path= BP . 'public' . DIRECTORY_SEPARATOR . 'images'. 
-            DIRECTORY_SEPARATOR . $result[$i]->id .'.png';
-            }
-            unlink($path);
-            $i++;
-        }
-     
-    }
-
 }

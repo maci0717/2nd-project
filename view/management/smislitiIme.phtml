@@ -1,6 +1,7 @@
-<hr>
-<?php if(isset($row)):
-    echo $row->username . '<br>';
+
+<?php 
+if($row->id!=''):
+    echo '<hr>' . $row->username . '<br>';
     echo $row->email . '<br>';
     echo $row->adress . '<br>';
     echo $row->status . '<br>';   

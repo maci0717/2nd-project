@@ -52,16 +52,6 @@
         public function removeAccount()
         {
             Myaccount::deleteAccount();
-            unset($_SESSION['user']);
-            session_destroy();
             $this->view->render('home');
         }
-
-        public function deleteFiles()
-        {
-            Myaccount::deleteFiles();
-            $this->view->render('home');
-        }
-
-
     }

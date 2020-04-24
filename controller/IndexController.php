@@ -6,6 +6,11 @@ class IndexController extends Controller
     {
         $this->view->render('home');
     }
+  
+    public function countImages()
+    {
+        echo Management::count();          
+    }
     
     public function registrationPage()
     {

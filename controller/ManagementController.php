@@ -28,9 +28,4 @@
                 'data' => Management::readAll()
             ]);
         }
-
-        public function countImages()
-        {
-            echo Management::count();          
-        }
     }
